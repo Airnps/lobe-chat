@@ -25,7 +25,7 @@ fi
 
 # Arg: --url
 # Determine the source URL to download files
-SOURCE_URL="https://raw.githubusercontent.com/lobehub/lobe-chat/main"
+SOURCE_URL="https://raw.githubusercontent.com/Airnps/lobe-chat/main"
 
 # Arg: --host
 # Determine the server host
@@ -223,10 +223,10 @@ show_message() {
         tips_allow_ports)
             case $LANGUAGE in
                 zh_CN)
-                    echo "请确保服务器以下端口未被占用且能被访问：3210, 9000, 9001, 8000"
+                    echo "请确保服务器以下端口未被占用且能被访问：3210, 9200, 9001, 8200"
                 ;;
                 *)
-                    echo "Please make sure the following ports on the server are not occupied and can be accessed: 3210, 9000, 9001, 8000"
+                    echo "Please make sure the following ports on the server are not occupied and can be accessed: 3210, 9200, 9001, 8200"
                 ;;
             esac
         ;;
@@ -403,8 +403,8 @@ ENV_EXAMPLES=(
 CASDOOR_PASSWORD="123"
 CASDOOR_SECRET="CASDOOR_SECRET"
 MINIO_ROOT_PASSWORD="YOUR_MINIO_PASSWORD"
-CASDOOR_HOST="localhost:8000"
-MINIO_HOST="localhost:9000"
+CASDOOR_HOST="localhost:8200"
+MINIO_HOST="localhost:9200"
 PROTOCOL="http"
 
 # If no language is specified, ask the user to choose
@@ -512,8 +512,8 @@ section_configurate_host() {
             HOST="$ask_result"
             # If user use ip mode, append the port to the host
             LOBE_HOST="${HOST}:3210"
-            MINIO_HOST="${HOST}:9000"
-            CASDOOR_HOST="${HOST}:8000"
+            MINIO_HOST="${HOST}:9200"
+            CASDOOR_HOST="${HOST}:8200"
             # Setup callback url for Casdoor
             $SED_COMMAND "s/"localhost:3210"/${LOBE_HOST}/" init_data.json
         ;;
@@ -645,8 +645,8 @@ section_display_configurated_report() {
     if [[ "$DEPLOY_MODE" == "domain" ]]; then
         echo $(show_message "tips_add_reverse_proxy")
         printf "\n%s\t->\t%s\n" "$LOBE_HOST" "127.0.0.1:3210"
-        printf "%s\t->\t%s\n" "$CASDOOR_HOST" "127.0.0.1:8000"
-        printf "%s\t->\t%s\n" "$MINIO_HOST" "127.0.0.1:9000"
+        printf "%s\t->\t%s\n" "$CASDOOR_HOST" "127.0.0.1:8200"
+        printf "%s\t->\t%s\n" "$MINIO_HOST" "127.0.0.1:9200"
     fi
 
     # Display final message
